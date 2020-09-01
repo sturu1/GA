@@ -77,12 +77,12 @@ def get_fitness(pred):
 
 # convert binary DNA to decimal and normalize
 def translateDNA(pop):
-    pop = pop.reshape(POP_SIZE,28,28,8)
-    sub_pop = np.zeros((POP_SIZE,28,28,1))#해당 배열에 0을 집어 넣기??
+    pop = pop.reshape(POP_SIZE,28,28,8)#8은 8자리의 2진수
+    sub_pop = np.zeros((POP_SIZE,28,28,1))#전부 0으로 된 배열 만들기
     for i in range(POP_SIZE):
         for j in range(28):
             for k in range(28):
-                sub_pop[i,j,k] = pop[i,j,k].dot(2 ** np.arange(8)) / 255. #dot을 사용한 행렬을 정규화
+                sub_pop[i,j,k] = pop[i,j,k].dot(2 ** np.arange(8)) / 255. #2진수(2 ** np.arange(8))를 10진수로 변환해서 정규화, pop부분은 축.
     return sub_pop
 
 # Added by Choi, T for EA lectures
